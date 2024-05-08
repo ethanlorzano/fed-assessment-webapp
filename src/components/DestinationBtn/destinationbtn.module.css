@@ -1,0 +1,25 @@
+.destination {
+  font-size: 16pt;
+  padding: 2rem 1rem 2rem 1rem;
+  cursor: pointer;
+}
+
+.destination:hover {
+  animation: rg-link__hover 0.3s forwards;
+}
+
+@media only screen and (max-width: 1024px) {
+  .destination {
+    font-size: 14pt;
+    padding: 2rem 0.5rem 2rem 0.5rem;
+  }
+}
+
+@keyframes rg-link__hover {
+  from {
+    border-bottom: 0px solid #fff7;
+  }
+  to {
+    border-bottom: 3px solid #fff7;
+  }
+}

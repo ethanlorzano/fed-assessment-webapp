@@ -1,94 +1,76 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
 import styles from "./page.module.css";
+import { Barlow, Barlow_Condensed, Bellefair } from "next/font/google";
+import { useEffect } from "react";
+
+import bgDesktop from "../../public/home/background-home-desktop.jpg";
+import bgTablet from "../../public/home/background-home-tablet.jpg";
+import bgMobile from "../../public/home/background-home-mobile.jpg";
+
+const bellefair = Bellefair({ subsets: ["latin"], weight: "400" });
+const barlowCondensed = Barlow_Condensed({ subsets: ["latin"], weight: "200" });
+const barlow = Barlow({ subsets: ["latin"], weight: "200" });
 
 export default function Home() {
+  function setBackgroundImage() {
+    const isTablet = window.matchMedia("(max-width: 1024px)");
+    const isMobile = window.matchMedia("(max-width: 500px)");
+
+    document.body.setAttribute(
+      "style",
+      `background-image: url("${bgDesktop.src}")`
+    );
+    if (isTablet.matches) {
+      document.body.setAttribute(
+        "style",
+        `background-image: url("${bgTablet.src}")`
+      );
+    } else if (isMobile.matches) {
+      document.body.setAttribute(
+        "style",
+        `background-image: url("${bgMobile.src}")`
+      );
+    } else {
+      document.body.setAttribute(
+        "style",
+        `background-image: url("${bgDesktop.src}")`
+      );
+    }
+  }
+
+  useEffect(() => {
+    console.log("crew");
+    setBackgroundImage();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", setBackgroundImage);
+  }, []);
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
+      <div className={`${styles.group} ${styles["left-group"]}`}>
+        <h5 className={barlowCondensed.className}>SO, YOU WANT TO TRAVEL TO</h5>
+        <h1 className={bellefair.className}>SPACE</h1>
+        <p className={barlow.className}>
+          Let&apos;s face it; if you want to go to space, you might as well
+          genuinely go to outer space and not hover kind of on the edge of it.
+          Well sit back, and relax because we&apos;ll give you a truly out of
+          this world experience!
         </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className={`${styles.group} ${styles["right-group"]}`}>
+        <Link href={"/destination"}>
+          <div className={styles["circle-container"]}>
+            <h4
+              className={`${bellefair.className} ${styles["circle-container__explore"]}`}
+            >
+              EXPLORE
+            </h4>
+          </div>
+        </Link>
       </div>
     </main>
   );

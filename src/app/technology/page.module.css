@@ -1,0 +1,143 @@
+.main {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.group {
+  flex: 1;
+  padding: 0rem 4rem 0rem 4rem;
+  text-wrap: pretty;
+}
+
+.left-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.left-group__header {
+  margin: 0rem 0rem 2rem 0rem;
+}
+
+.left-group__subheader {
+  margin-bottom: 2rem;
+}
+
+.left-group__landscape {
+  display: none;
+  width: 100vw;
+  object-fit: cover;
+}
+
+.selections__top {
+  display: none;
+  justify-content: center;
+  margin: 1rem 0rem 1rem 0rem;
+}
+
+.selections__left {
+  margin-left: 8rem;
+}
+
+.selections__circles {
+  width: 70px;
+  height: 70px;
+  margin: 1rem 0rem 1rem 0rem;
+  border-radius: 1000px;
+  border: 1px solid #fff6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selections__circles:hover {
+  border-radius: 1000px;
+  border: 1px solid white;
+}
+
+.right-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0rem 0rem 0rem;
+}
+
+.right-group__portrait {
+  width: 40vw;
+  object-fit: contain;
+}
+
+.circle-container {
+  width: 25vw;
+  height: 25vw;
+  min-width: 250px;
+  min-height: 250px;
+
+  border-radius: 100rem;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-container__explore {
+  color: black;
+  animation: circle-container__hoverout 0.5s reverse;
+}
+
+.circle-container:hover {
+  animation: circle-container__hoverin 0.5s forwards;
+}
+
+@media only screen and (max-width: 1024px) {
+  .left-group {
+    align-items: center;
+    padding: 0rem 4rem 0rem 4rem;
+  }
+  .left-group__header {
+    margin: 3rem 0rem 3rem 0rem;
+  }
+  .left-group__desc {
+    text-align: center;
+    padding: 1rem 4rem 0rem 4rem;
+  }
+  .selections__left {
+    display: none;
+  }
+  .selections__top {
+    display: flex;
+  }
+  .selections__circles {
+    margin: 0rem 1rem 0rem 1rem;
+  }
+  .left-group__landscape {
+    display: block;
+  }
+  .right-group__portrait {
+    display: none;
+  }
+}
+
+@keyframes circle-container__hoverin {
+  from {
+    box-shadow: 0px;
+  }
+  to {
+    box-shadow: 0px 0px 0px 7vh #fff6;
+  }
+}
+
+@keyframes circle-container__hoverout {
+  from {
+    box-shadow: 0px 0px 0px 7vh #fff6;
+  }
+  to {
+    box-shadow: 0px;
+  }
+}
